@@ -31,7 +31,7 @@ const Dashboard = () => {
             }
         }).then((res)=>setResultCurrency(res?.data?.data[currencyState?.toCurrency?.split(" ")[1]]))
         }
-    }, [amount]);
+    }, [amount,currencyState]);
 
 
 
