@@ -10,6 +10,7 @@ import SelectCountry from "@/components/selectCountry";
 import {useAppSelector} from "@/store/storeHooks";
 import axios from "axios";
 import {shallowEqual} from "react-redux";
+import {API_KEY, CURRENCY_API} from "@/constants";
 
 const Dashboard = () => {
     const {user} = useAuth()
@@ -21,16 +22,10 @@ const Dashboard = () => {
     }),shallowEqual)
 
     useEffect(() => {
-        // currencies:currencyState?.toCurrency?.split(" ")[1],
-        //     base_currency:currencyState?.fromCurrency?.split(" ")[1],
-        //     apikey:"fca_live_kIHHapaIcWDbkSy20BGdLT6HEJ6fpwmdhMJPCB7r",
-        //     "https://api.freecurrencyapi.com/v1/latest"
-
-            console.log("currencies:",currencyState?.toCurrency?.split(" ")[1] ,"base",currencyState?.fromCurrency?.split(" ")[1] )
         if (amount) {
-        axios.get("https://api.freecurrencyapi.com/v1/latest",{
+        axios.get(CURRENCY_API,{
             params:{
-                apikey:"fca_live_kIHHapaIcWDbkSy20BGdLT6HEJ6fpwmdhMJPCB7r",
+                apikey:API_KEY,
                 base_currency:currencyState?.fromCurrency?.split(" ")[1],
                 currencies:currencyState?.toCurrency?.split(" ")[1],
             }
@@ -39,7 +34,6 @@ const Dashboard = () => {
     }, [amount]);
 
 
-    console.log("result",resultCurrency)
 
     if (!user){
         router.push("/login")
@@ -58,7 +52,6 @@ const Dashboard = () => {
     }
 
 
-    console.log("=",)
     return (
         <Container maxWidth={'md'} sx={containerStyles}>
            <Typography variant={'h5'} sx={{marginBottom:"2rem"}}>{ `Welcome ${user?.name}`}</Typography>

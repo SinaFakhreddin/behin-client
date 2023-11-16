@@ -6,7 +6,6 @@ import {setAmount} from "@/store/currencySlice";
 const InputAmount = () => {
     const amount = useAppSelector(state=>state?.currency?.amount)
     const dispatch =useAppDispatch()
-    console.log("amount",amount)
     return (
         <Grid item={true}>
             <TextField

@@ -16,7 +16,6 @@ interface VerifyTokenHOCProps {
 }
 const VerifyToken = withFormik<VerifyTokenHOCProps, VerifyTokenInterface>({
     mapPropsToValues:(props)=>{
-    console.log("props",props)
         return {
             code:"",
             token:props?.token

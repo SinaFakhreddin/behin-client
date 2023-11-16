@@ -27,7 +27,6 @@ const RegisterFormHOC = withFormik<RegisterFormProps, InnerRegisterFormHocInterf
     handleSubmit:async (values,{props}) => {
         try {
             const res = await callApi().post('/auth/register',values)
-            console.log("props",props)
             if (res.status==201){
                 props.router.push("/login")
                 toast.success("successful")
